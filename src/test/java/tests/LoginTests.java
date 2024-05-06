@@ -1,5 +1,6 @@
 package tests;
 
+import models.User;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -19,6 +20,24 @@ public class LoginTests extends TestBase {
     public void loginSuccess() {
         app.getHelperUser().openLoginForm();
         app.getHelperUser().fillLoginForm("marga@gmail.com", "Mmar123456$");
+        app.getHelperUser().submitLogin();
+        //Assert if element with text "Logged in success" is present
+        Assert.assertEquals(app.getHelperUser().getMessage(), "Logged in success");
+        //app.getHelperUser().clickOKButton();
+
+    }
+
+    @Test
+    public void loginSuccess1() {
+        User user = new User().setEmail("marga@gmail.com").setPassword("Mmar123456$");
+//        User user1 = new User();
+//        user1.setEmail().setPassword().setFirstName();
+
+//        user.setEmail("marga@gmail.com");
+//        user.setPassword("Mmar123456$");
+
+        app.getHelperUser().openLoginForm();
+        app.getHelperUser().fillLoginForm(user);
         app.getHelperUser().submitLogin();
         //Assert if element with text "Logged in success" is present
         Assert.assertEquals(app.getHelperUser().getMessage(), "Logged in success");
