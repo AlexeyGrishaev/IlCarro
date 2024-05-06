@@ -37,6 +37,16 @@ public class LoginTests extends TestBase {
 
     }
 
+    @Test
+    public void loginWrongEmail(){
+
+    }
+
+    @Test
+    public void loginWrongPassword(){
+
+    }
+
 
     @AfterMethod
     public void postCondition() {
