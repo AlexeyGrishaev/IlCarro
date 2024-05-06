@@ -32,4 +32,8 @@ public class HelperBase {
             throw new RuntimeException(e);
         }
     }
+
+    public boolean isElementPresent(By locator) {
+        return wd.findElements(locator).size()>0;
+    }
 }
