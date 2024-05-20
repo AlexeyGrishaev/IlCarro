@@ -25,19 +25,9 @@ public class HelperUser extends HelperBase {
         type(By.id("password"), user.getPassword());
     }
 
-    public void submit() {
-        click(By.xpath("//button[@type='submit']"));
-    }
 
-    public String getMessage() {
-//        WebElement element = wd.findElement(By.cssSelector(".dialog-container>h2"));
-//        String text = element.getText();
-//        //wait
-//        pause(2000);
-//        return text;
-        pause(2000);
-        return wd.findElement(By.cssSelector(".dialog-container>h2")).getText();
-    }
+
+
 
     public void clickOKButton() {
         if (isElementPresent(By.xpath("//button[text()='Ok']")))
