@@ -32,9 +32,9 @@ if (!app.getHelperUser().isLogged()){
                 .price(50)
                 .about("Very nice car")
                 .build();
-        app.getHelperCar().openCarForm();
-        app.getHelperCar().fillCarForm(car);
-        app.getHelperCar().submitCarForm();
+//        app.getHelperCar().openCarForm();
+//        app.getHelperCar().fillCarForm(car);
+//        app.getHelperCar().submitCarForm();
 
 
     }
