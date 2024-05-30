@@ -9,19 +9,21 @@ import org.testng.annotations.Test;
 
 import java.util.Random;
 
-public class AddNewCarTests extends TestBase{
+public class AddNewCarTests extends TestBase {
 
-@BeforeClass
-public void preCondition(){
-if (!app.getHelperUser().isLogged()){
-    app.getHelperUser().login(new User()
-            .setEmail("margo@gmail.com").setPassword("Mmar123456$"));
-}
+    @BeforeClass
+    public void preCondition() {
+        if (!app.getHelperUser().isLogged()) {
+            app.getHelperUser().login(new User()
+                    .setEmail("margo@gmail.com").setPassword("Mmar123456$"));
+            logger.info("Logout complete");
+        }
 
-}
+    }
+
     @Test
-    public void addNewCarSuccessAll(){
-        int i = new Random().nextInt(1000)+1000;
+    public void addNewCarSuccessAll() {
+        int i = new Random().nextInt(1000) + 1000;
         Car car = Car.builder()
                 .location("Tel Aviv, Israel")
                 .manufacture("Mazda")
@@ -30,22 +32,23 @@ if (!app.getHelperUser().isLogged()){
                 .fuel("Petrol")
                 .seats(4)
                 .carClass("C")
-                .carRegNumber("678-900-"+i)
+                .carRegNumber("678-900-" + i)
                 .price(50)
                 .about("Very nice car")
                 .build();
-       app.getHelperCar().openCarForm();
+        logger.info("Test start with test data --->" + car.toString());
+        app.getHelperCar().openCarForm();
         app.getHelperCar().fillCarForm(car);
         app.getHelperCar().attachPhoto("D:\\Qa_25\\QA25_IlCarro\\2023-lamborghini-huracan.jpg");
-       app.getHelperCar().submit();
+        app.getHelperCar().submit();
         Assert.assertTrue(app.getHelperCar().getMessage().contains("added successful"));
-        Assert.assertEquals(app.getHelperCar().getMessage(),car
-                .getManufacture()+" "+car.getModel()+" added successful");
+        Assert.assertEquals(app.getHelperCar().getMessage(), car
+                .getManufacture() + " " + car.getModel() + " added successful");
     }
 
     @Test
-    public void addNewCarSuccess(){
-        int i = new Random().nextInt(1000)+1000;
+    public void addNewCarSuccess() {
+        int i = new Random().nextInt(1000) + 1000;
         Car car = Car.builder()
                 .location("Tel Aviv, Israel")
                 .manufacture("KIA")
@@ -54,23 +57,23 @@ if (!app.getHelperUser().isLogged()){
                 .fuel("Petrol")
                 .seats(4)
                 .carClass("C")
-                .carRegNumber("678-999-"+i)
+                .carRegNumber("678-999-" + i)
                 .price(50)
                 .build();
+        logger.info("Test start with test data --->" + car.toString());
         app.getHelperCar().openCarForm();
         app.getHelperCar().fillCarForm(car);
         app.getHelperCar().submit();
         Assert.assertTrue(app.getHelperCar().getMessage().contains("added successful"));
-        Assert.assertEquals(app.getHelperCar().getMessage(),car
-                .getManufacture()+" "+car.getModel()+" added successful");
-
+        Assert.assertEquals(app.getHelperCar().getMessage(), car
+                .getManufacture() + " " + car.getModel() + " added successful");
 
 
     }
 
 
     @AfterMethod
-    public void postCondition(){
-    app.getHelperCar().returnToHome();
+    public void postCondition() {
+        app.getHelperCar().returnToHome();
     }
 }
